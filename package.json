@@ -1,0 +1,8 @@
+{
+  "name": "performance-tests-javascript",
+  "version": "1.0.0",
+  "description": "Collection of various performance tests for JavaScript features",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false
+}
