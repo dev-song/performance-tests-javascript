@@ -1,5 +1,7 @@
-function helloWorld() {
-  console.log('hello');
+import { samplePerformanceTest } from './src/samplePerformanceTest';
+
+function main() {
+  samplePerformanceTest();
 }
 
-helloWorld();
+main();
