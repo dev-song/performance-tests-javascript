@@ -1,22 +1,55 @@
-import { accumulateNestedMap, generateNestedMap } from './src/utils/mapTester';
-import { performanceTester } from './src/performanceTester';
+import { accumulateNestedMap, generateNestedMap, generateSimpleMap } from './src/utils/map';
+import { testPerformance } from './src/testPerformance';
 import { fruits } from './src/utils/constants';
+import { accumulateNestedObj, generateNestedObj } from './src/utils/object';
 
 function main() {
-  // samplePerformanceTest();
-  const nestedMap = generateNestedMap(fruits, 5);
-  const sum = accumulateNestedMap(nestedMap);
+  const DESIRED_DEPTH = 6;
+  const DESIRED_SIZE = 1000000;
+  const nestedMap = generateNestedMap(fruits, DESIRED_DEPTH);
+  const nestedObj = generateNestedObj(fruits, DESIRED_DEPTH);
+  const mapSum = accumulateNestedMap(nestedMap);
+  const objSum = accumulateNestedObj(nestedObj);
 
-  performanceTester(
+  // testPerformance(
+  //   {
+  //     fn: () => generateNestedMap(fruits, DESIRED_DEPTH),
+  //     label: `Generating a nested map with depth of ${DESIRED_DEPTH}`,
+  //   },
+  //   {
+  //     fn: () => generateNestedObj(fruits, DESIRED_DEPTH),
+  //     label: `Generating a nested obj with depth of ${DESIRED_DEPTH}`,
+  //   },
+  // );
+  // testPerformance(
+  //   {
+  //     fn: () => accumulateNestedMap(nestedMap),
+  //     label: `Sum of a nested map with depth of ${DESIRED_DEPTH}`,
+  //   },
+  //   {
+  //     fn: () => accumulateNestedObj(nestedObj),
+  //     label: `Sum of a nested obj with depth of ${DESIRED_DEPTH}`,
+  //   },
+  // );
+
+  testPerformance(
     {
-      fn: () => generateNestedMap(fruits, 5),
-      label: 'Generate a nested map with depth of 5',
+      fn: () => generateSimpleMap(DESIRED_SIZE),
+      label: `Generating a simple map with size of ${DESIRED_SIZE}`,
     },
-    { fn: () => accumulateNestedMap(nestedMap), label: 'Accumulate numbers from a nested map' },
+    {
+      fn: () => generateSimpleMap(DESIRED_SIZE),
+      label: `Generating a simple obj with size of ${DESIRED_SIZE}`,
+    },
   );
 
-  // console.log(nestedMap);
-  // console.log(sum);
+  // console.time('Object Generation');
+  // generateSimpleObj(DESIRED_SIZE);
+  // console.timeEnd('Object Generation');
+
+  // console.time('Map Generation');
+  // generateSimpleMap(DESIRED_SIZE);
+  // console.timeEnd('Map Generation');
 }
 
 main();

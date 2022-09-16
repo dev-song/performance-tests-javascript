@@ -1,6 +1,6 @@
 import { PerformanceObserver, performance } from 'node:perf_hooks';
 
-export function performanceTester(
+export function testPerformance(
   base: { fn: Function; label?: string },
   compare?: { fn: Function; label?: string },
 ) {
