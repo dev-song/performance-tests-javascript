@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "private": false,
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.7.17",
     "ts-node": "^10.9.1",
